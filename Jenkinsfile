@@ -22,7 +22,7 @@ pipeline {
         stage('Validate & Auto-fix YAML') {
             steps {
                 script {
-                    def yamlFiles = findFiles(glob: 'sample-yamls/*.yaml')
+                    def yamlFiles = sh(script: "ls sample-yamls/*.yaml", returnStdout: true).trim().split("\\n")
                     def failed = false
 
                     for (file in yamlFiles) {
